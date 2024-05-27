@@ -23,20 +23,20 @@ MAGENTA=\033[0;35m
 CYAN=\033[0;36m
 NC=\033[0m
 
-all: $(EXE)
+all: | $(LIBDIR) $(EXE)
 
-$(EXE): $(OBJ) | $(BUILDDIR)
+$(EXE): | $(BUILDDIR) $(OBJ) 
 
 $(BUILDDIR):
 	@echo "$(GREEN)Create $(BLUE)build$(GREEN) directory$(NC)"
 	@mkdir -p $@/$(SRCDIR) $@/$(LIBDIR) $(SRCFOLDERS:%=$(BUILDDIR)/%)
 
 # .o files
-$(BUILDDIR)/%.o: %.c | $(BUILDDIR)
+$(BUILDDIR)/%.o: %.c
 	@echo "$(YELLOW)Compiling $(BLUE)$(notdir $@)$(NC)"
 	@$(CC) $(CFLAGS) -c $< -o $@ -I$(LIBDIR)
 
-download_sqlite:
+ $(LIBDIR):
 	@echo "Downloading $(BLUE)sqlite3$(NC)"
 	@wget -q -P $(LIBDIR)/ https://www.sqlite.org/2024/sqlite-amalgamation-3460000.zip
 	@echo "$(MAGENTA)Extracting $(BLUE)sqlite3.c$(NC)"
