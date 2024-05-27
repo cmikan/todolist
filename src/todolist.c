@@ -62,7 +62,17 @@ int main(int argc, char **argv)
     {
         if (atoi(argv[1])) // Delete mode
         {
-            return 0;
+            char *insert_stm = sqlite3_mprintf("DELETE FROM notes WHERE id = %q", argv[1]);
+            char *err_msg = 0;
+            int rc = sqlite3_exec(db, insert_stm, 0, 0, &err_msg);
+            if (rc != SQLITE_OK) {
+                fprintf(stderr, "SQL error: %s\n", err_msg);
+                sqlite3_free(err_msg);
+            } else {
+                printf("Note added successfully.\n");
+            }
+
+            sqlite3_free(insert_stm);
         }
         else // Insert mod
         {
