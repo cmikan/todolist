@@ -50,4 +50,4 @@ $(BUILDDIR)/%.o: %.c | $(BUILDDIR) $(LIBDIR)
 
 clean:
 	@echo "$(RED)Clean project$(NC)"
-	@rm -fr $(BUILDDIR) $(LIBDIR) $(EXE) ||:
+	@rm -fr $(BUILDDIR) $(EXE) ||:
