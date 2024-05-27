@@ -4,6 +4,6 @@ int main()
 {
     sqlite3 *db;
 
-    sqlite3_open("db.sqlite", &db);
+    sqlite3_open("todolist.db", &db);
     return 0;
 }

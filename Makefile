@@ -25,7 +25,9 @@ NC=\033[0m
 
 all: | $(LIBDIR) $(EXE)
 
-$(EXE): | $(BUILDDIR) $(OBJ) 
+$(EXE): | $(BUILDDIR) $(OBJ)
+	@echo "$(MAGENTA)Compiling $(CYAN)$(notdir $@)$(NC)"
+	@$(CC) $(CFLAGS) -o $@ $(OBJ)
 
 $(BUILDDIR):
 	@echo "$(GREEN)Create $(BLUE)build$(GREEN) directory$(NC)"
