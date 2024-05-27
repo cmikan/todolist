@@ -23,9 +23,9 @@ MAGENTA=\033[0;35m
 CYAN=\033[0;36m
 NC=\033[0m
 
-all: | $(LIBDIR) $(EXE)
+all: $(EXE) | $(LIBDIR)
 
-$(EXE): | $(BUILDDIR) $(OBJ)
+$(EXE): $(OBJ) | $(BUILDDIR)
 	@echo "$(MAGENTA)Compiling $(CYAN)$(notdir $@)$(NC)"
 	@$(CC) $(CFLAGS) -o $@ $(OBJ)
 
