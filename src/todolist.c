@@ -2,8 +2,14 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int main()
+int main(int argc, char **argv)
 {
+    if (argc > 2)
+    {
+        fprintf(stderr, "Too many arguments.\n");
+        return -1;
+    }
+
     sqlite3 *db;
     char *err_msg = 0;
     int rv;
